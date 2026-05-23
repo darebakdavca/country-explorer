@@ -4,11 +4,14 @@ import { cn } from "@/lib/utils";
 import { IoMoonOutline } from "react-icons/io5";
 import { MdOutlineWbSunny } from "react-icons/md";
 
-export function ThemeSwitcher({ className }: { className: string }) {
-  const { theme } = useTheme();
+export function ThemeSwitcher({ className }: { className?: string }) {
+  const { theme, setTheme } = useTheme();
+
+  const isDark = theme === 'dark';
+
   return (
 
-    <Button className={cn(className)} variant={'outline'} onClick={triggerTheme}>
+    <Button className={cn(className)} variant={'outline'} onClick={() => setTheme(isDark ? 'light' : 'dark')}>
       <span className='inline-flex items-center gap-2'>
         {theme === 'dark' ?
           <>
