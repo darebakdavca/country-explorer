@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useTheme } from "@/contexts/theme-provider";
 import { cn } from "@/lib/utils";
 import { IoMoonOutline } from "react-icons/io5";
@@ -10,26 +11,34 @@ export function ThemeSwitcher({ className }: { className?: string }) {
   const isDark = theme === 'dark';
 
   return (
+    <Tooltip>
+      <TooltipTrigger>
+        <Button className={cn(className)} variant={'outline'} onClick={() => setTheme(isDark ? 'light' : 'dark')}>
+          <span className='inline-flex items-center gap-2'>
+            {theme === 'light' ?
+              <>
+                <MdOutlineWbSunny />
+                <span className="hidden md:block">
+                  Light mode
+                </span>
 
-    <Button className={cn(className)} variant={'outline'} onClick={() => setTheme(isDark ? 'light' : 'dark')}>
-      <span className='inline-flex items-center gap-2'>
-        {theme === 'dark' ?
-          <>
-            <MdOutlineWbSunny />
-            <span className="hidden md:block">
-              Světlý režim
-            </span>
-
-          </>
-          :
-          <>
-            <IoMoonOutline />
-            <span className="hidden md:block">
-              Tmavý režim
-            </span>
-          </>
-        }
-      </span>
-    </Button>
+              </>
+              :
+              <>
+                <IoMoonOutline />
+                <span className="hidden md:block">
+                  Dark mode
+                </span>
+              </>
+            }
+          </span>
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <div>
+          {theme === 'light' ? 'Change to dark mode' : 'Change to light mode'}
+        </div>
+      </TooltipContent>
+    </Tooltip>
   );
 }
