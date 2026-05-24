@@ -12,7 +12,7 @@ export function Layout() {
                 <NavLink to={'/'}>
                     <div className="flex gap-2 items-center">
                         <img src="/src/assets/icon.png" className="w-8 md:w-10 xl:w-12" />
-                        <h1 className="text-xl md:text-2xl xl:text-3xl font-bold">Country eplorer</h1>
+                        <h1 className="text-xl md:text-2xl xl:text-3xl font-bold">Country explorer</h1>
                     </div>
                 </NavLink>
                 <div className="flex items-center gap-4">
