@@ -12,7 +12,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
 
   return (
     <Tooltip>
-      <TooltipTrigger>
+      <TooltipTrigger asChild>
         <Button className={cn(className)} variant={'outline'} onClick={() => setTheme(isDark ? 'light' : 'dark')}>
           <span className='inline-flex items-center gap-2'>
             {theme === 'light' ?

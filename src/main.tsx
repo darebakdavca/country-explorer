@@ -7,12 +7,35 @@ import { ThemeProvider } from "@/contexts/theme-provider.tsx"
 import { BrowserRouter } from "react-router";
 import { TooltipProvider } from "@/components/ui/tooltip.tsx"
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+import { CountriesProvider } from "@/contexts/CountriesContext.tsx"
+import { FavourtesProvider } from "@/contexts/FavouritesContext.tsx"
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 5 * 60 * 1000,
+      retry: 2,
+    },
+  },
+});
+
+
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <ThemeProvider>
         <TooltipProvider>
-          <App />
+          <QueryClientProvider client={queryClient}>
+            <CountriesProvider>
+              <FavourtesProvider>
+                <App />
+              </FavourtesProvider>
+            </CountriesProvider>
+          </QueryClientProvider>
         </TooltipProvider>
       </ThemeProvider>
     </BrowserRouter>
