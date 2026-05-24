@@ -26,7 +26,7 @@ export function BookmarkButton({ country }: { country: Country }) {
             <Tooltip>
                 <TooltipTrigger asChild>
                     <Button className="px-0" variant={'ghost'} onClick={handleClick}>
-                        <StarIcon className={cn("size-6", { 'fill-white': isInFavourites })} />
+                        <StarIcon className={cn("size-6", { 'fill-foreground': isInFavourites })} />
                     </Button>
                 </TooltipTrigger>
                 <TooltipContent>

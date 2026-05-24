@@ -1,4 +1,4 @@
-import { Layout } from "@/components/Layout"
+import { Layout } from "@/components/layouts/Layout"
 import { CountriesPage } from "@/pages/CountriesPage"
 import { CountryDetailPage } from "@/pages/CountryDetailPage"
 import { FavouriteCountriesPage } from "@/pages/FavouriteCountriesPage"
