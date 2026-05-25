@@ -30,7 +30,7 @@ export function CountryCard({ country }: { country: Country }) {
                         </div>
                     </div>
                     <div className="flex items-end">
-                        <img src={country.flags.svg ? country.flags.svg : country.flags.png ? country.flags.png : country.flags.svg} alt={country.flags.alt} className="h-10" />
+                        <img src={country.flags.svg ? country.flags.svg : country.flags.png ? country.flags.png : 'placeholder_flag.png'} alt={country.flags.alt} className="h-10" />
                     </div>
                 </div>
             </article >

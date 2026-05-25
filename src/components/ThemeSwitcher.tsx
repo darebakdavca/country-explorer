@@ -14,7 +14,7 @@ export function ThemeSwitcher({ className }: { className?: string }) {
     <Tooltip>
       <TooltipTrigger asChild>
         <Button className={cn(className)} variant={'outline'} onClick={() => setTheme(isDark ? 'light' : 'dark')}>
-          <span className='inline-flex items-center gap-2'>
+          <span className='inline-flex items-center gap-2 text-foreground'>
             {theme === 'light' ?
               <>
                 <MdOutlineWbSunny />

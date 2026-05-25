@@ -27,14 +27,14 @@ export function Layout() {
             >
                 <div
                     className={`flex items-center justify-between rounded-full border p-5 transition-colors duration-300 ${hasScrolled
-                        ? "bg-background text-white border border-primary"
+                        ? "bg-background text-white border border-primary shadow-accent shadow-xl"
                         : "bg-secondary/85 border-transparent"
                         }`}
                 >
                     <NavLink to={'/'}>
                         <div className="flex gap-2 items-center">
                             <img src="icon.png" className="w-8 md:w-10 xl:w-12" />
-                            <h1 className="text-xl md:text-2xl xl:text-3xl font-bold">Country explorer</h1>
+                            <h1 className="text-xl md:text-2xl xl:text-3xl font-bold text-foreground">Country explorer</h1>
                         </div>
                     </NavLink>
                     <div className="flex items-center gap-4">
