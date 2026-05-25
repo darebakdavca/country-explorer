@@ -1,5 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { type RegionType, useCountries } from "@/contexts/CountriesContext";
 
 export function CountriesFilter() {
@@ -10,19 +11,27 @@ export function CountriesFilter() {
             <span className="text-muted-foreground">
                 Filter by:
             </span>
-            <div className="grid grid-rows-1 grid-cols-12 gap-2">
+            <div className="gap-2 flex items-center justify-start">
                 <Input
-                    className="col-span-4"
+                    className="grow-0 w-80"
                     value={countryName}
                     onChange={(event) => filterByName(event.target.value)}
                     placeholder="Country name"
                 />
                 <Select value={selectedRegion ?? ''} onValueChange={(value) => {
                     filterByRegion(value as RegionType)
-                }}>
-                    <SelectTrigger className="">
-                        <SelectValue placeholder={'Region'} />
-                    </SelectTrigger>
+                }}
+                >
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <SelectTrigger className="w-32">
+                                <SelectValue placeholder={'Region'} />
+                            </SelectTrigger>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            Region
+                        </TooltipContent>
+                    </Tooltip>
                     <SelectContent position="popper">
                         <SelectItem value={"all"}>All</SelectItem>
                         {regions.map((rg) =>

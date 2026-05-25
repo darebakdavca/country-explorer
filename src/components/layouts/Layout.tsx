@@ -17,11 +17,11 @@ export function Layout() {
 
         window.addEventListener('scroll', updateScrolled, { passive: true })
 
-        return window.removeEventListener('scroll', updateScrolled)
-    })
+        return () => window.removeEventListener('scroll', updateScrolled)
+    }, [])
 
     return (
-        <div className="mx-auto grid max-w-5xl gap-4 px-4">
+        <div className="mx-auto grid max-w-5xl xl:max-w-6xl gap-4 px-4">
             <header
                 className={`sticky top-0 z-50 py-5 px-4 transition-colors duration-300`}
             >
@@ -51,7 +51,7 @@ export function Layout() {
                 </div>
             </header >
             <main>
-                <div className="grid gap-4">
+                <div className="grid gap-4 mb-5">
                     <Outlet />
                 </div>
             </main>
