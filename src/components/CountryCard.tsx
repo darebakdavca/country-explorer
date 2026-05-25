@@ -7,14 +7,14 @@ export function CountryCard({ country }: { country: Country }) {
 
     return (
         <NavLink to={`/${country.name.common}`}>
-            <article className="bg-secondary overflow-hidden rounded-xl p-6 grid gap-8  ring ring-transparent cursor-pointer hover:ring-primary hover:-translate-y-0.5 duration-200" key={country.cca3}>
+            <article className="bg-secondary overflow-hidden rounded-3xl p-6 grid gap-8  ring ring-transparent cursor-pointer hover:ring-primary hover:-translate-y-0.5 duration-200" key={country.cca3}>
                 <div className="flex gap-4 justify-between">
                     <span className="text-2xl font-semibold">
                         {country.name.common}
                     </span>
                     <BookmarkButton country={country} />
                 </div>
-                <div className="flex justify-between">
+                <div className="flex justify-between gap-2">
                     <div className="grid gap-1 text-sm">
                         <div className="flex gap-1">
                             <p className="text-muted-foreground">Capital:</p>

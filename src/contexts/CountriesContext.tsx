@@ -1,12 +1,19 @@
 import { fetchCountries } from "@/api/countriesApi";
 import type { Country } from "@/types/country.types"
 import { useQuery } from "@tanstack/react-query";
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
+
+export type RegionType = Country['region'] | 'all';
 
 type CountriesContextType = {
     countries: Country[];
     isLoading: boolean;
     isError: boolean;
+    regions: Country['region'][];
+    countryName: string;
+    selectedRegion: RegionType;
+    filterByName: (name: string) => void;
+    filterByRegion: (region: RegionType) => void;
 }
 
 const CountriesContext = createContext<CountriesContextType | undefined>(undefined);
@@ -14,16 +21,37 @@ const CountriesContext = createContext<CountriesContextType | undefined>(undefin
 export const CountriesProvider = ({ children }: { children: ReactNode }) => {
     const { data: serverCountries, isLoading, isError } = useQuery({ queryKey: ["countries"], queryFn: fetchCountries })
 
-    const [countries, setCountries] = useState<Country[]>([]);
+    const [selectedRegion, setSelectedRegion] = useState<RegionType>('all');
+    const [countryName, setCountryName] = useState('');
 
-    useEffect(() => {
-        if (serverCountries) {
-            // eslint-disable-next-line react-hooks/set-state-in-effect
-            setCountries(serverCountries)
-        }
-    }, [serverCountries]);
+    const allCountries = useMemo(() => serverCountries ?? [], [serverCountries]);
+
+    const regions = useMemo(() => {
+        return [...new Set(allCountries.map((country) => country.region))].sort();
+    }, [allCountries])
+
+    const countries = useMemo(() => {
+        const normalizedCountryName = countryName.trim().toLowerCase();
+
+        return allCountries.filter((country) => {
+            const matchesRegion = selectedRegion === 'all' || country.region === selectedRegion;
+            const matchesName = normalizedCountryName === ''
+                || country.name.common.toLowerCase().includes(normalizedCountryName);
+
+            return matchesRegion && matchesName;
+        });
+    }, [allCountries, countryName, selectedRegion])
+
+    const filterByName = (name: string) => {
+        setCountryName(name)
+    }
+
+    const filterByRegion = (region: RegionType) => {
+        setSelectedRegion(region)
+    }
+
     return (
-        <CountriesContext.Provider value={{ countries, isError, isLoading }}>
+        <CountriesContext.Provider value={{ countries, isError, isLoading, regions, countryName, selectedRegion, filterByName, filterByRegion }}>
             {children}
         </CountriesContext.Provider>
     );
@@ -33,7 +61,7 @@ export const CountriesProvider = ({ children }: { children: ReactNode }) => {
 export function useCountries() {
     const context = useContext(CountriesContext);
 
-    if (!context) throw new Error('useCountries hook must be used within ContriesProvider.')
+    if (!context) throw new Error('useCountries hook must be used within CountriesProvider.')
 
     return context;
 }

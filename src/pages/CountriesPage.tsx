@@ -13,10 +13,15 @@ export function CountriesPage() {
     return (
         <>
             <CountriesFilter />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-                {countries && countries.map((country) => {
-                    return <CountryCard key={country.cca3} country={country} />
-                })}
+            <div>
+                <span className="text-sm text-muted-foreground">
+                    {countries.length} countries found
+                </span>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                    {countries && countries.map((country) => {
+                        return <CountryCard key={country.cca3} country={country} />
+                    })}
+                </div>
             </div>
         </>
     )

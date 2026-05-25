@@ -16,6 +16,7 @@ export function CountryDetailPage() {
         <div>
             <GoBackButton />
             {country.name.common}
+            {country.region}
         </div>
     )
 }
