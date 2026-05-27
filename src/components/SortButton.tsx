@@ -17,7 +17,7 @@ export function SortButton({ children, sortFilter }: SortButtonProps) {
     const isActiveSort = sortConfig.filter === sortFilter;
     const sortDirection = isActiveSort ? sortConfig.direction : 'natural';
 
-    const tooltipLabel = sortDirection === 'natural' ? 'Sort ascending' : sortDirection === 'ascending' ? 'Sort descending' : 'Reset sort';
+    const tooltipLabel = sortDirection === 'natural' ? `Sort ascending by ${sortFilter}` : sortDirection === 'ascending' ? `Sort descending by ${sortFilter}` : 'Reset sort';
 
     const handleClick = () => {
         const currentIndex = sortDirections.indexOf(sortDirection);
