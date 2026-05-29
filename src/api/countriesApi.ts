@@ -1,6 +1,7 @@
 import type { Country } from "@/types/country.types"
 
-const API_URL = import.meta.env.VITE_COUNTRY_API_URL
+const API_URL = "https://restcountries.com/v3.1"
+
 const COUNTRY_FIELDS = [
   "cca3",
   "name",
