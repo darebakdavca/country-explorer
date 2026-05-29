@@ -142,3 +142,7 @@
     width: 100vw;
   }
 }
+
+@utility fallback {
+  @apply absolute w-full inset-0 h-full flex justify-center items-center;
+}

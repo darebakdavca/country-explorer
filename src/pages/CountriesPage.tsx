@@ -6,8 +6,8 @@ import { useCountries } from "@/contexts/CountriesContext"
 export function CountriesPage() {
     const { countries, isLoading, isError, sortConfig } = useCountries();
 
-    if (isLoading) return <div>načítám</div>
-    if (isError) return <div>chyba</div>
+    if (isLoading) return <div className="absolute w-full inset-0 h-full flex justify-center items-center">Loading countries...</div>
+    if (isError) return <div className="absolute w-full inset-0 h-full flex justify-center items-center text-red-500">Error fetching countries</div>
 
 
     return (

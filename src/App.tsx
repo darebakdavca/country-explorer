@@ -10,7 +10,7 @@ export function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<CountriesPage />} />
-        <Route path="/:name" element={<CountryDetailPage />} />
+        <Route path="/country/:slug" element={<CountryDetailPage />} />
         <Route path="/favourites" element={<FavouriteCountriesPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>

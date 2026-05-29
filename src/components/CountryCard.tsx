@@ -7,6 +7,8 @@ import { IoIosPeople } from "react-icons/io";
 import { IoResize } from "react-icons/io5";
 import { NavLink, type NavLinkProps } from "react-router";
 
+import slugify from 'slugify'
+
 
 type CardContentProps = Omit<NavLinkProps, "to"> & {
     country: Country
@@ -19,7 +21,7 @@ function CardContent({ country, ref, ...props }: CardContentProps) {
         : <span className="italic text-muted-foreground">No capital</span>
 
     return (
-        <NavLink ref={ref} to={`/${country.name.common}`} {...props}>
+        <NavLink ref={ref} to={`/country/${slugify(country.name.common)}-${country.cca3}`} {...props}>
             <article className="bg-secondary overflow-hidden rounded-3xl grow p-6 grid gap-8  ring ring-transparent cursor-pointer hover:ring-primary hover:-translate-y-0.5 duration-200" key={country.cca3}>
                 <div className="flex gap-4 justify-between">
                     <span className="text-2xl font-semibold text-start">
