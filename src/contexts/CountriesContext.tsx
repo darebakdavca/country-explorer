@@ -1,4 +1,5 @@
 import { fetchCountries } from "@/api/countriesApi";
+import { filterAndSortCountries } from "@/lib/countryFilters";
 import type { Country } from "@/types/country.types"
 import { useQuery } from "@tanstack/react-query";
 import { createContext, useContext, useMemo, useState, type ReactNode } from "react";
@@ -44,29 +45,7 @@ export const CountriesProvider = ({ children }: { children: ReactNode }) => {
     }, [allCountries])
 
     const countries = useMemo(() => {
-        const normalizedCountryName = countryName.trim().toLowerCase();
-
-        const filteredCountries = allCountries.filter((country) => {
-            const matchesRegion = selectedRegion === 'all' || country.region === selectedRegion;
-            const matchesName = normalizedCountryName === ''
-                || country.name.common.toLowerCase().includes(normalizedCountryName);
-
-            return matchesRegion && matchesName;
-        });
-
-        if (sortConfig.direction === 'natural') {
-            return filteredCountries;
-        }
-
-        return [...filteredCountries].sort((countryA, countryB) => {
-            const directionModifier = sortConfig.direction === 'ascending' ? 1 : -1;
-
-            if (sortConfig.filter === 'name') {
-                return countryA.name.common.localeCompare(countryB.name.common) * directionModifier;
-            }
-
-            return (countryA[sortConfig.filter] - countryB[sortConfig.filter]) * directionModifier;
-        });
+        return filterAndSortCountries(allCountries, countryName, selectedRegion, sortConfig)
     }, [allCountries, countryName, selectedRegion, sortConfig])
 
     const filterByName = (name: string) => {

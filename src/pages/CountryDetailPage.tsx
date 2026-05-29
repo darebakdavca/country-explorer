@@ -69,7 +69,7 @@ export function CountryDetailPage() {
                     <img
                         src={country.flags.svg || country.flags.png || "placeholder_flag.png"}
                         alt={country.flags.alt || `${country.name.common} flag`}
-                        className="w-full max-h-[420px] rounded-3xl bg-secondary object-contain p-6"
+                        className="w-full max-h-105 rounded-3xl bg-secondary object-contain p-6"
                     />
                 </div>
             </div>

@@ -15,12 +15,10 @@ export const FavourtesProvider = ({ children }: { children: ReactNode }) => {
 
     const addToFavourites = (country: Country) => {
         setFavourites((prev) => [...prev, country])
-        console.log('adding to favourites')
     }
 
     const removeFromFavourites = (myCountry: Country) => {
         setFavourites((prev) => prev.filter(country => country !== myCountry))
-        console.log('removing from favourites')
     }
 
     return (
