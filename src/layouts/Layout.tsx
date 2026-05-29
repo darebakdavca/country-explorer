@@ -1,6 +1,7 @@
 import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import { useFavourites } from "@/contexts/FavouritesContext";
+import iconUrl from "@/assets/icon.png";
 import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router";
 
@@ -33,7 +34,7 @@ export function Layout() {
                 >
                     <NavLink to={'/'}>
                         <div className="flex gap-2 items-center">
-                            <img src={'icon.png'} className="w-8 md:w-10 xl:w-12" />
+                            <img src={iconUrl} className="w-8 md:w-10 xl:w-12" />
                             <h1 className="text-xl md:text-2xl xl:text-3xl font-bold text-foreground">Country explorer</h1>
                         </div>
                     </NavLink>

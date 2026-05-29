@@ -1,6 +1,7 @@
 import { BookmarkButton } from "@/components/BookmarkButton";
 import { GoBackButton } from "@/components/GoBackButton";
 import { useCountries } from "@/contexts/CountriesContext"
+import placeholderFlagUrl from "@/assets/placeholder_flag.png";
 import { useParams } from "react-router";
 
 export function CountryDetailPage() {
@@ -67,7 +68,7 @@ export function CountryDetailPage() {
                 </div>
                 <div className="grid gap-4">
                     <img
-                        src={country.flags.svg || country.flags.png || "placeholder_flag.png"}
+                        src={country.flags.svg || country.flags.png || placeholderFlagUrl}
                         alt={country.flags.alt || `${country.name.common} flag`}
                         className="w-full max-h-105 rounded-3xl bg-secondary object-contain p-6"
                     />

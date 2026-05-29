@@ -2,6 +2,7 @@ import { BookmarkButton } from "@/components/BookmarkButton";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
 import { useCountries } from "@/contexts/CountriesContext";
 import type { Country } from "@/types/country.types";
+import placeholderFlagUrl from "@/assets/placeholder_flag.png";
 import type { Ref } from "react";
 import { IoIosPeople } from "react-icons/io";
 import { IoResize } from "react-icons/io5";
@@ -45,7 +46,7 @@ function CardContent({ country, ref, ...props }: CardContentProps) {
                         </div>
                     </div>
                     <div className="flex items-end">
-                        <img src={country.flags.svg ? country.flags.svg : country.flags.png ? country.flags.png : 'placeholder_flag.png'} alt={country.flags.alt} className="h-10" />
+                        <img src={country.flags.svg ? country.flags.svg : country.flags.png ? country.flags.png : placeholderFlagUrl} alt={country.flags.alt} className="h-10" />
                     </div>
                 </div>
             </article >
