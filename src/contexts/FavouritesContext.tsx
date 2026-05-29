@@ -10,7 +10,7 @@ type FavouritesContextType = {
 
 const FavouritesContext = createContext<FavouritesContextType | undefined>(undefined);
 
-export const FavourtesProvider = ({ children }: { children: ReactNode }) => {
+export const FavouritesProvider = ({ children }: { children: ReactNode }) => {
     const [favourites, setFavourites] = useState<Country[]>([]);
 
     const addToFavourites = (country: Country) => {

@@ -25,7 +25,7 @@ export function BookmarkButton({ country, className }: { country: Country, class
         <div className="h-full items-center justify-center flex">
             <Tooltip>
                 <TooltipTrigger asChild>
-                    <Button className={cn("px-0")} variant={'ghost'} onClick={handleClick}>
+                    <Button aria-label={isInFavourites ? 'Remove from favourites' : 'Add to favourites'} className={cn("px-0")} variant={'ghost'} onClick={handleClick}>
                         <StarIcon className={cn("size-6", { 'fill-foreground': isInFavourites }, className)} />
                     </Button>
                 </TooltipTrigger>

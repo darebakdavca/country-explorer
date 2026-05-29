@@ -12,7 +12,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import { CountriesProvider } from "@/contexts/CountriesContext.tsx"
-import { FavourtesProvider } from "@/contexts/FavouritesContext.tsx"
+import { FavouritesProvider } from "@/contexts/FavouritesContext.tsx"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -31,9 +31,9 @@ createRoot(document.getElementById("root")!).render(
         <TooltipProvider>
           <QueryClientProvider client={queryClient}>
             <CountriesProvider>
-              <FavourtesProvider>
+              <FavouritesProvider>
                 <App />
-              </FavourtesProvider>
+              </FavouritesProvider>
             </CountriesProvider>
           </QueryClientProvider>
         </TooltipProvider>
