@@ -4,7 +4,8 @@ import react from "@vitejs/plugin-react"
 import { defineConfig } from "vitest/config"
 
 // https://vite.dev/config/
-export default defineConfig({
+export default defineConfig(({ command }) => ({
+  base: command === "build" ? "/country-explorer/" : "/",
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
@@ -16,4 +17,4 @@ export default defineConfig({
     globals: true,
     setupFiles: "./src/test-setup.ts",
   },
-})
+}))

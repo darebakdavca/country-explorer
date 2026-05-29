@@ -19,6 +19,7 @@ function CardContent({ country, ref, ...props }: CardContentProps) {
     const capital = country.capital?.length
         ? country.capital.join(", ")
         : <span className="italic text-muted-foreground">No capital</span>
+    const placeholderFlagSrc = `${import.meta.env.BASE_URL}placeholder_flag.png`;
 
     return (
         <NavLink ref={ref} to={`/country/${slugify(country.name.common)}-${country.cca3}`} {...props}>
@@ -45,7 +46,7 @@ function CardContent({ country, ref, ...props }: CardContentProps) {
                         </div>
                     </div>
                     <div className="flex items-end">
-                        <img src={country.flags.svg ? country.flags.svg : country.flags.png ? country.flags.png : 'placeholder_flag.png'} alt={country.flags.alt} className="h-10" />
+                        <img src={country.flags.svg ? country.flags.svg : country.flags.png ? country.flags.png : placeholderFlagSrc} alt={country.flags.alt} className="h-10" />
                     </div>
                 </div>
             </article >
