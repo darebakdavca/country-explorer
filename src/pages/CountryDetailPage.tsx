@@ -1,3 +1,4 @@
+import { BookmarkButton } from "@/components/BookmarkButton";
 import { GoBackButton } from "@/components/GoBackButton";
 import { useCountries } from "@/contexts/CountriesContext"
 import { useParams } from "react-router";
@@ -25,10 +26,11 @@ export function CountryDetailPage() {
             <GoBackButton />
             <div className="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)]">
                 <div className="grid content-start gap-6">
-                    <div>
+                    <div className="flex gap-4 justify-between items-center">
                         <div className="text-5xl font-semibold">
                             {country.name.common}
                         </div>
+                        <BookmarkButton className="size-10" country={country} />
                     </div>
                     <dl className="grid gap-3 text-base">
                         <div className="flex justify-between gap-4 border-b border-border pb-2">
