@@ -3,6 +3,7 @@ import { GoBackButton } from "@/components/GoBackButton";
 import { useCountries } from "@/contexts/CountriesContext"
 import placeholderFlagUrl from "@/assets/placeholder_flag.png";
 import { useParams } from "react-router";
+import { useEffect } from "react";
 
 export function CountryDetailPage() {
     const { slug } = useParams();
@@ -18,9 +19,14 @@ export function CountryDetailPage() {
         ? Object.values(country.currencies).map((currency) => currency.symbol ? `${currency.name} (${currency.symbol})` : currency.name).join(", ")
         : "No currencies listed";
 
+    useEffect(() => {
+        window.scrollTo({ 'top': 0, behavior: 'smooth' })
+    }, [])
+
     if (isLoading) return <div className="fallback">Loading country...</div>
     if (isError) return <div className="fallback text-red-500">Error fetching country</div>
     if (!country) return <div className="fallback">Country not found</div>
+
 
     return (
         <div>

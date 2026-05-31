@@ -13,7 +13,7 @@ export function Layout() {
     const { hasScrolled } = useScrolled();
 
     return (
-        <div className="mx-auto grid max-w-5xl xl:max-w-6xl gap-4 px-4 relative">
+        <div className="mx-auto grid max-w-5xl xl:max-w-6xl  px-4 relative">
             <header
                 className={`sticky top-0 z-50 py-5 px-4 transition-colors duration-300`}
             >
