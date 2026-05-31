@@ -2,27 +2,18 @@ import { ThemeSwitcher } from "@/components/ThemeSwitcher";
 import { Button } from "@/components/ui/button";
 import { useFavourites } from "@/contexts/FavouritesContext";
 import iconUrl from "@/assets/icon.png";
-import { useEffect, useState } from "react";
 import { NavLink, Outlet } from "react-router";
+import { cn } from "@/lib/utils";
+import { ScrollToTopButton } from "@/components/ScrollToTopButton";
+import { useScrolled } from "@/hooks/useScrolled";
 
 export function Layout() {
     const { favourites } = useFavourites();
-    const [hasScrolled, setHasScrolled] = useState(false);
 
-    useEffect(() => {
-        const updateScrolled = () => {
-            setHasScrolled(window.scrollY > 0)
-        }
-
-        updateScrolled();
-
-        window.addEventListener('scroll', updateScrolled, { passive: true })
-
-        return () => window.removeEventListener('scroll', updateScrolled)
-    }, [])
+    const { hasScrolled } = useScrolled();
 
     return (
-        <div className="mx-auto grid max-w-5xl xl:max-w-6xl gap-4 px-4">
+        <div className="mx-auto grid max-w-5xl xl:max-w-6xl gap-4 px-4 relative">
             <header
                 className={`sticky top-0 z-50 py-5 px-4 transition-colors duration-300`}
             >
@@ -38,10 +29,10 @@ export function Layout() {
                             <h1 className="text-xl md:text-2xl xl:text-3xl font-bold text-foreground">Country explorer</h1>
                         </div>
                     </NavLink>
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-2 lg:gap-4">
                         <NavLink to={'/favourites'}>
                             {({ isActive }) =>
-                                <Button variant={'link'} className={isActive ? 'underline' : ''}>
+                                <Button variant={'link'} className={cn('p-0', isActive ? 'underline' : '')}>
                                     Favourites
                                     {favourites.length > 0 ? ` (${favourites.length})` : ''}
                                 </Button>
@@ -56,6 +47,7 @@ export function Layout() {
                     <Outlet />
                 </div>
             </main>
+            <ScrollToTopButton />
         </div >
     );
 }

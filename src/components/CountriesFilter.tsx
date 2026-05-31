@@ -15,9 +15,9 @@ export function CountriesFilter() {
             <span className="text-muted-foreground">
                 Filter by:
             </span>
-            <div className="flex justify-between items-center gap-2">
-                <div className="gap-2 flex items-center justify-start">
-                    <div className="relative w-80">
+            <div className="flex justify-between items-center gap-2 flex-wrap">
+                <div className="gap-2 flex items-center justify-start flex-wrap">
+                    <div className="relative w-52 xl:w-80">
                         <Input
                             className="pr-9"
                             value={countryName}
@@ -41,7 +41,7 @@ export function CountriesFilter() {
                     >
                         <Tooltip>
                             <TooltipTrigger asChild>
-                                <SelectTrigger className="w-32">
+                                <SelectTrigger className="min-w-32">
                                     <SelectValue placeholder={'Region'} />
                                 </SelectTrigger>
                             </TooltipTrigger>
